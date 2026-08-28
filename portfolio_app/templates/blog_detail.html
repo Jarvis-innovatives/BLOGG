@@ -1,0 +1,390 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }} — Jarvis Lameck{% endblock %}
+
+{% block content %}
+<article class="paper-grain py-10 md:py-16">
+  <div class="mx-auto max-w-4xl px-6">
+    
+    <!-- Top Action Bar -->
+    <div class="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-[var(--color-gilded)]/30 pb-4">
+      <a href="{% url 'blog_list' %}" class="inline-flex items-center gap-2 font-serif text-lg font-semibold text-stone-700 hover:text-[var(--color-burgundy)] transition">
+        &larr; Back to Journal List
+      </a>
+      <div class="flex items-center gap-3">
+        <button id="toggle-fullscreen-btn" class="btn-gold text-sm py-2 px-4 flex items-center gap-2">
+          <span>⤢</span> Fullscreen Reader
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content Reader Box -->
+    <div id="reader-box" class="reader-container">
+      
+      <!-- Article Header -->
+      <header class="mb-8">
+        <div class="flex flex-wrap items-center gap-3 font-serif text-sm">
+          <span class="rounded-full bg-[var(--color-burgundy)]/15 px-3.5 py-1 font-bold text-[var(--color-burgundy)]">
+            🏷️ {{ post.tag }}
+          </span>
+          <span class="text-stone-600">📅 {{ post.date_display }}</span>
+          <span class="text-stone-600">•</span>
+          <span class="text-stone-600">⏱️ {{ post.read_time }}</span>
+        </div>
+
+        <h1 class="font-display mt-4 text-3xl sm:text-5xl font-bold leading-tight text-[var(--color-ink)]">
+          {{ post.title }}
+        </h1>
+        <div class="ornate-divider my-5 max-w-md"><span>✦</span></div>
+        <p class="font-serif text-xl italic text-stone-800 leading-relaxed bg-[var(--color-parchment-deep)]/70 p-5 rounded-md border-l-4 border-[var(--color-burgundy)] shadow-sm">
+          {{ post.summary }}
+        </p>
+      </header>
+
+      <!-- Featured Banner Image -->
+      <div class="mb-8 overflow-hidden rounded-md border border-[var(--color-gilded)]/40 shadow-lg">
+        <img src="{{ post.get_image_url }}" alt="{{ post.title }}" class="block max-h-[420px] w-full object-cover" />
+      </div>
+
+      <!-- JSON Data Script tag for clean safe parsing -->
+      {{ post.content_json|json_script:"article-content-data" }}
+
+      <!-- Dynamic Page Container (Populated by Page-Shifting Engine) -->
+      <div id="reader-pages-wrapper" class="font-serif text-[19px] leading-[1.85] text-stone-850">
+        <!-- Server-side fallback rendering -->
+        <noscript>
+          <div class="space-y-6">
+            {% if post.content_json.topics %}
+              {% for topic in post.content_json.topics %}
+                <h2 class="font-display text-2xl font-bold text-[var(--color-burgundy)] mt-6">{{ topic.topic }}</h2>
+                {% for sub in topic.subtopics %}
+                  <div class="my-4">
+                    <h3 class="font-display text-xl font-bold text-[var(--color-ink)]">{{ sub.title }}</h3>
+                    <p class="font-serif text-lg leading-relaxed text-stone-800">{{ sub.explanation }}</p>
+                  </div>
+                {% endfor %}
+              {% endfor %}
+            {% endif %}
+          </div>
+        </noscript>
+      </div>
+
+      <!-- Reader Navigation Bar (Next / Prev Page Shifts) -->
+      <div id="reader-pagination-bar" class="mt-10 pt-6 border-t border-[var(--color-gilded)]/40 flex flex-wrap items-center justify-between gap-4">
+        <button id="prev-page-btn" class="page-nav-btn">
+          &larr; Previous Page
+        </button>
+
+        <div id="page-indicator" class="page-indicator-pill">
+          Page <span id="current-page-num">1</span> of <span id="total-page-num">1</span>
+        </div>
+
+        <button id="next-page-btn" class="page-nav-btn">
+          Next Page &rarr;
+        </button>
+      </div>
+
+    </div>
+
+    <div class="ornate-divider my-12"><span>✦</span></div>
+
+    <!-- Related Articles & Next Article Footer Navigation -->
+    <div class="grid gap-6 md:grid-cols-2">
+      {% if next_post %}
+      <a href="{% url 'blog_detail' next_post.slug %}" class="group block rounded-md border-2 border-[var(--color-burgundy)] bg-[var(--color-parchment-deep)] p-6 shadow-md hover:shadow-xl transition">
+        <p class="font-serif text-xs uppercase tracking-wider font-bold text-[var(--color-burgundy)]">Read Next Article &rarr;</p>
+        <p class="font-display mt-2 text-2xl font-bold text-[var(--color-ink)] group-hover:text-[var(--color-burgundy)] transition">
+          {{ next_post.title }}
+        </p>
+        <p class="font-serif text-sm text-stone-600 mt-1 line-clamp-2">{{ next_post.summary }}</p>
+      </a>
+      {% endif %}
+
+      <div class="rounded-md border border-[var(--color-gilded)]/40 bg-white/70 p-6 shadow-sm flex flex-col justify-between">
+        <div>
+          <p class="font-serif text-xs uppercase tracking-wider font-bold text-stone-600">Explore Journal</p>
+          <p class="font-display mt-2 text-xl font-bold text-[var(--color-ink)]">Discover more tech articles</p>
+          <p class="font-serif text-sm text-stone-600 mt-1">Browse our full archive of tutorials, networking tips, and cybersecurity guides.</p>
+        </div>
+        <div class="mt-4">
+          <a href="{% url 'blog_list' %}" class="btn-secondary text-sm py-2 px-5">
+            View All Articles
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</article>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const jsonScriptEl = document.getElementById('article-content-data');
+    if (!jsonScriptEl) return;
+
+    let contentData = null;
+    try {
+      contentData = JSON.parse(jsonScriptEl.textContent);
+    } catch (err) {
+      console.error("Failed to parse article content JSON:", err);
+    }
+
+    const wrapper = document.getElementById('reader-pages-wrapper');
+    const prevBtn = document.getElementById('prev-page-btn');
+    const nextBtn = document.getElementById('next-page-btn');
+    const curNumEl = document.getElementById('current-page-num');
+    const totNumEl = document.getElementById('total-page-num');
+    const fullscreenBtn = document.getElementById('toggle-fullscreen-btn');
+    const readerBox = document.getElementById('reader-box');
+
+    if (!contentData) {
+      wrapper.innerHTML = `<p class="font-serif text-xl italic text-stone-600 py-8">No content available for this article.</p>`;
+      return;
+    }
+
+    // Universal Content Engine: Calculates exact pages and builds section headers
+    function parseContentToPages(data) {
+      const pages = [];
+
+      // Extract array of items safely
+      let itemsList = [];
+      if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
+        itemsList = data.topics || data.pages || data.sections || data.content || data.blocks || [data];
+      } else if (Array.isArray(data)) {
+        itemsList = data;
+      } else if (typeof data === 'string') {
+        itemsList = [data];
+      }
+
+      if (!Array.isArray(itemsList) || itemsList.length === 0) {
+        itemsList = [data];
+      }
+
+      // Check if items are distinct topic objects (e.g. Post 10 or Post 14)
+      const hasTopics = itemsList.some(item => item && typeof item === 'object' && item.topic && Array.isArray(item.subtopics));
+
+      if (hasTopics) {
+        const totalSections = itemsList.length;
+        itemsList.forEach((topicObj, index) => {
+          const sectionNum = index + 1;
+          const pct = Math.round((sectionNum / totalSections) * 100);
+
+          let html = `
+            <div class="mb-6">
+              <div class="flex items-center justify-between font-serif text-sm font-semibold border-b border-[var(--color-gilded)]/40 pb-2 mb-6 text-[var(--color-burgundy)]">
+                <span>SECTION ${sectionNum} OF ${totalSections}</span>
+                <span class="text-stone-500">${pct}% READ</span>
+              </div>
+              <h2 class="font-display text-2xl sm:text-3xl font-bold text-[var(--color-ink)] mb-6">
+                ${topicObj.topic}
+              </h2>
+          `;
+
+          if (Array.isArray(topicObj.subtopics)) {
+            topicObj.subtopics.forEach(sub => {
+              html += `
+                <div class="mb-6 bg-white/85 p-6 rounded-md border border-[var(--color-gilded)]/40 shadow-sm">
+                  <h3 class="font-display text-xl font-bold text-[var(--color-burgundy)] mb-2">✦ ${sub.title || 'Overview'}</h3>
+                  <p class="font-serif text-lg leading-relaxed text-stone-800">${sub.explanation || sub.text || ''}</p>
+                </div>
+              `;
+            });
+          }
+          html += `</div>`;
+          pages.push(html);
+        });
+      }
+      else {
+        // Standard blocks or short article
+        // If content total blocks <= 4, keep on 1 SINGLE page (Page 1 of 1)
+        if (itemsList.length <= 4) {
+          let html = `<div class="mb-6">`;
+          itemsList.forEach(block => {
+            if (typeof block === 'string') {
+              html += `<p class="mb-5 text-stone-850 text-lg leading-relaxed">${block}</p>`;
+            } else if (block.type === 'heading') {
+              html += `<h2 class="font-display text-2xl md:text-3xl font-bold text-[var(--color-burgundy)] mt-6 mb-3">${block.text}</h2>`;
+            } else if (block.type === 'paragraph') {
+              html += `<p class="mb-5 text-stone-850 text-lg leading-relaxed">${block.text}</p>`;
+            } else if (block.type === 'quote') {
+              html += `<blockquote class="rounded-md border-l-4 border-[var(--color-gilded)] bg-white/90 p-5 italic text-stone-900 my-6 shadow-sm">“${block.text}”</blockquote>`;
+            } else if (block.type === 'list' && Array.isArray(block.items)) {
+              html += `
+                <div class="my-5">
+                  <p class="font-semibold text-stone-900 mb-2 font-serif text-lg">${block.text}</p>
+                  <ul class="ml-6 list-disc space-y-2 marker:text-[var(--color-burgundy)] text-lg">
+                    ${block.items.map(item => `<li>${item}</li>`).join('')}
+                  </ul>
+                </div>
+              `;
+            } else if (block.heading || block.title) {
+              html += `<h2 class="font-display text-2xl font-bold text-[var(--color-burgundy)] mt-6 mb-3">${block.heading || block.title}</h2><p class="mb-5 text-stone-850 text-lg leading-relaxed">${block.text || block.explanation || ''}</p>`;
+            } else if (block.text || block.paragraph) {
+              html += `<p class="mb-5 text-stone-850 text-lg leading-relaxed">${block.text || block.paragraph}</p>`;
+            }
+          });
+          html += `</div>`;
+          pages.push(html);
+        }
+        else {
+          // Group 2 blocks per page for longer standard articles
+          const blocksPerPage = 2;
+          const totalPagesCount = Math.ceil(itemsList.length / blocksPerPage);
+
+          for (let i = 0; i < itemsList.length; i += blocksPerPage) {
+            const pageIndex = Math.floor(i / blocksPerPage) + 1;
+            const pct = Math.round((pageIndex / totalPagesCount) * 100);
+            const chunk = itemsList.slice(i, i + blocksPerPage);
+
+            let html = `
+              <div class="mb-6">
+                <div class="flex items-center justify-between font-serif text-xs font-semibold border-b border-[var(--color-gilded)]/40 pb-2 mb-6 text-[var(--color-burgundy)]">
+                  <span>PAGE ${pageIndex} OF ${totalPagesCount}</span>
+                  <span class="text-stone-500">${pct}% READ</span>
+                </div>
+            `;
+
+            chunk.forEach(block => {
+              if (typeof block === 'string') {
+                html += `<p class="mb-5 text-stone-850 text-lg leading-relaxed">${block}</p>`;
+              } else if (block.type === 'heading') {
+                html += `<h2 class="font-display text-2xl md:text-3xl font-bold text-[var(--color-burgundy)] mt-6 mb-3">${block.text}</h2>`;
+              } else if (block.type === 'paragraph') {
+                html += `<p class="mb-5 text-stone-850 text-lg leading-relaxed">${block.text}</p>`;
+              } else if (block.type === 'quote') {
+                html += `<blockquote class="rounded-md border-l-4 border-[var(--color-gilded)] bg-white/90 p-5 italic text-stone-900 my-6 shadow-sm">“${block.text}”</blockquote>`;
+              } else if (block.type === 'list' && Array.isArray(block.items)) {
+                html += `
+                  <div class="my-5">
+                    <p class="font-semibold text-stone-900 mb-2 font-serif text-lg">${block.text}</p>
+                    <ul class="ml-6 list-disc space-y-2 marker:text-[var(--color-burgundy)] text-lg">
+                      ${block.items.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                  </div>
+                `;
+              } else if (block.heading || block.title) {
+                html += `<h2 class="font-display text-2xl font-bold text-[var(--color-burgundy)] mt-6 mb-3">${block.heading || block.title}</h2><p class="mb-5 text-stone-850 text-lg leading-relaxed">${block.text || block.explanation || ''}</p>`;
+              } else if (block.text || block.paragraph) {
+                html += `<p class="mb-5 text-stone-850 text-lg leading-relaxed">${block.text || block.paragraph}</p>`;
+              }
+            });
+
+            html += `</div>`;
+            pages.push(html);
+          }
+        }
+      }
+
+      if (pages.length === 0) {
+        pages.push(`<p class="font-serif text-lg leading-relaxed text-stone-800">${JSON.stringify(data)}</p>`);
+      }
+
+      return pages;
+    }
+
+    const pagesHtmlList = parseContentToPages(contentData);
+    const totalPages = pagesHtmlList.length;
+    totNumEl.textContent = totalPages;
+
+    // Render page containers
+    let fullWrapperHtml = '';
+    pagesHtmlList.forEach((pageHtml, index) => {
+      fullWrapperHtml += `
+        <div class="reader-page ${index === 0 ? 'active-page' : ''}" data-page="${index + 1}">
+          ${pageHtml}
+        </div>
+      `;
+    });
+
+    wrapper.innerHTML = fullWrapperHtml;
+
+    let currentPage = 1;
+
+    function updateReaderState() {
+      // Toggle active page visibility
+      document.querySelectorAll('.reader-page').forEach(pageEl => {
+        pageEl.classList.remove('active-page');
+        if (parseInt(pageEl.dataset.page) === currentPage) {
+          pageEl.classList.add('active-page');
+        }
+      });
+
+      curNumEl.textContent = currentPage;
+
+      // Previous Page Button Logic
+      if (currentPage === 1) {
+        prevBtn.disabled = true;
+      } else {
+        prevBtn.disabled = false;
+      }
+
+      // Next Page Button Logic
+      if (currentPage < totalPages) {
+        nextBtn.innerHTML = `Next Page &rarr;`;
+        nextBtn.disabled = false;
+      } else {
+        // Last Page reached
+        {% if next_post %}
+        nextBtn.innerHTML = `Next Article &rarr;`;
+        nextBtn.disabled = false;
+        {% else %}
+        nextBtn.innerHTML = `End of Article`;
+        nextBtn.disabled = true;
+        {% endif %}
+      }
+    }
+
+    // Previous Button Click Handler
+    prevBtn.addEventListener('click', function () {
+      if (currentPage > 1) {
+        currentPage--;
+        updateReaderState();
+        readerBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    // Next Button Click Handler
+    nextBtn.addEventListener('click', function () {
+      if (currentPage < totalPages) {
+        currentPage++;
+        updateReaderState();
+        readerBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else if (currentPage === totalPages) {
+        {% if next_post %}
+        window.location.href = "{% url 'blog_detail' next_post.slug %}";
+        {% endif %}
+      }
+    });
+
+    // Keyboard Arrow Keys (Left & Right) Handler
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' && currentPage < totalPages) {
+        currentPage++;
+        updateReaderState();
+      } else if (e.key === 'ArrowLeft' && currentPage > 1) {
+        currentPage--;
+        updateReaderState();
+      }
+    });
+
+    // Fullscreen Reader Toggle Handler
+    if (fullscreenBtn && readerBox) {
+      fullscreenBtn.addEventListener('click', function () {
+        readerBox.classList.toggle('is-fullscreen');
+        if (readerBox.classList.contains('is-fullscreen')) {
+          fullscreenBtn.innerHTML = `<span>✕</span> Exit Fullscreen`;
+          document.body.style.overflow = 'hidden';
+        } else {
+          fullscreenBtn.innerHTML = `<span>⤢</span> Fullscreen Reader`;
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    updateReaderState();
+  });
+</script>
+{% endblock %}

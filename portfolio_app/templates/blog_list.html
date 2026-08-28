@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Journal & Articles — Jarvis Lameck{% endblock %}
+
+{% block content %}
+<section class="paper-grain py-16">
+  <div class="mx-auto max-w-7xl px-6">
+    
+    <!-- Title & Header -->
+    <div class="text-center mb-12">
+      <p class="font-serif italic text-[var(--color-burgundy)] text-xl">~ The Personal Journal ~</p>
+      <h1 class="font-display text-5xl md:text-7xl font-bold mt-2 text-[var(--color-ink)]">
+        Thoughts &amp; Technical Notes
+      </h1>
+      <div class="ornate-divider mx-auto mt-5 w-48"><span>✦</span></div>
+      <p class="font-serif mt-4 max-w-2xl mx-auto text-stone-700 text-lg leading-relaxed">
+        A growing collection of notes on networking, cybersecurity, software development, and the mindset it takes to build meaningful technology in Tanzania.
+      </p>
+    </div>
+
+    <!-- Filter, Search & Sort Control Bar -->
+    <div class="mb-12 rounded-lg border border-[var(--color-gilded)]/40 bg-white/60 p-6 shadow-sm space-y-6">
+      
+      <!-- Category Tag Filter Buttons -->
+      <div>
+        <p class="font-serif text-sm font-semibold text-stone-600 mb-3">Filter by Category:</p>
+        <div class="flex flex-wrap gap-2.5">
+          {% for t in tags %}
+          <button class="tag-btn {% if selected_tag == t %}active{% endif %}" data-tag="{{ t }}">
+            {{ t }}
+          </button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Search & Sort Row -->
+      <div class="grid gap-4 md:grid-cols-[1fr_250px] items-center pt-4 border-t border-[var(--color-gilded)]/20">
+        <div>
+          <input type="text" id="blog-search" value="{{ search_query }}" placeholder="🔍 Search articles by keyword or topic..." class="search-input" />
+        </div>
+        <div class="flex items-center gap-2">
+          <label for="blog-sort" class="font-serif text-stone-600 text-sm font-semibold whitespace-nowrap">Sort by:</label>
+          <select id="blog-sort" class="w-full rounded-full border border-[var(--color-gilded)]/50 bg-white px-4 py-2.5 font-serif text-stone-800 focus:outline-none focus:border-[var(--color-burgundy)]">
+            <option value="latest" {% if selected_sort == 'latest' %}selected{% endif %}>Latest First</option>
+            <option value="oldest" {% if selected_sort == 'oldest' %}selected{% endif %}>Oldest First</option>
+            <option value="title" {% if selected_sort == 'title' %}selected{% endif %}>Title (A-Z)</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Dynamic Blog Grid -->
+    <div id="blog-posts-grid" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {% for post in posts %}
+      <article class="group flex flex-col rounded-md overflow-hidden border border-[var(--color-gilded)]/40 bg-white/70 hover:shadow-xl transition duration-500">
+        <div class="overflow-hidden h-52 relative">
+          <img src="{{ post.get_image_url }}" alt="{{ post.title }}" loading="lazy" class="h-full w-full object-cover group-hover:scale-110 transition duration-700" />
+          <span class="absolute top-3 left-3 rounded-full bg-[var(--color-burgundy)] px-3 py-1 text-xs font-serif text-[var(--color-parchment)] shadow">
+            {{ post.tag }}
+          </span>
+        </div>
+        <div class="flex flex-1 flex-col p-6">
+          <div class="flex items-center gap-3 font-serif text-sm text-stone-600">
+            <span>📅 {{ post.date_display }}</span>
+            <span>•</span>
+            <span>⏱️ {{ post.read_time }}</span>
+          </div>
+          <h2 class="font-display text-2xl font-bold mt-2 text-[var(--color-ink)] leading-snug">{{ post.title }}</h2>
+          <p class="font-serif mt-2 flex-1 text-stone-700 leading-relaxed text-[17px]">{{ post.summary }}</p>
+          <div class="mt-6 flex items-center justify-between pt-3 border-t border-stone-200">
+            <a href="{% url 'blog_detail' post.slug %}" class="inline-flex items-center gap-2 font-serif italic text-[var(--color-burgundy)] font-semibold hover:underline">
+              Read more &rarr;
+            </a>
+            <button class="quick-read-btn text-sm font-serif italic text-stone-600 hover:text-[var(--color-burgundy)]" data-slug="{{ post.slug }}">
+              ⚡ Quick Read
+            </button>
+          </div>
+        </div>
+      </article>
+      {% empty %}
+      <div class="col-span-full py-16 text-center">
+        <p class="font-serif text-2xl text-stone-600">No journal entries found matching your filter.</p>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endblock %}

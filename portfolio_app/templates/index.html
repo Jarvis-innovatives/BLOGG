@@ -1,0 +1,471 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Jarvis Lameck — IT Expert & Software Developer{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section id="top" class="paper-grain relative overflow-hidden">
+  <div class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-[var(--color-burgundy)]/15 blur-3xl"></div>
+  <div class="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-[var(--color-emerald)]/15 blur-3xl"></div>
+  <div class="relative mx-auto max-w-3xl px-6 py-20 text-center md:py-28">
+    <p class="font-serif italic text-[var(--color-burgundy)] text-xl mb-4">
+      ~ Portfolio &amp; Personal Journal ~
+    </p>
+    <h1 class="font-display text-5xl sm:text-7xl md:text-8xl font-black leading-tight text-[var(--color-ink)] flex flex-wrap justify-center items-center gap-x-4 gap-y-1">
+      <span>Jarvis</span>
+      <span class="italic font-medium text-[var(--color-burgundy)]">Lameck</span>
+    </h1>
+    <div class="ornate-divider mx-auto my-7 max-w-md"><span>✦</span></div>
+    <h2 class="font-serif text-2xl md:text-3xl text-[var(--color-ink)]/85">
+      IT Expert &amp; Software Developer
+    </h2>
+    <p class="mx-auto mt-6 max-w-xl text-[var(--color-ink)]/75 leading-relaxed font-serif text-lg">
+      I am an IT expert, Cisco Certified Network Associate (CCNA), and software developer passionate about networking, cybersecurity, mobile app development, and technology innovation in Tanzania.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
+      <a href="#projects" class="btn-primary">
+        View My Projects <span>&rarr;</span>
+      </a>
+      <a href="{% url 'blog_list' %}" class="btn-secondary">
+        Read My Blog
+      </a>
+      <a href="#contact" class="btn-gold">
+        Contact Me
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Section Separator -->
+<div class="ornate-divider max-w-4xl mx-auto my-4"><span>✦</span></div>
+
+<!-- Chapter I: About Me -->
+<section id="about" class="paper-grain">
+  <div class="mx-auto max-w-7xl px-6 py-20">
+    <div class="text-center mb-14">
+      <p class="font-serif italic text-lg text-[var(--color-burgundy)]">{{ about_me.kicker|default:"~ Chapter I ~" }}</p>
+      <h2 class="font-display text-4xl md:text-6xl font-bold mt-2 text-[var(--color-ink)]">{{ about_me.title|default:"About Me" }}</h2>
+      <div class="ornate-divider mx-auto mt-5 w-48"><span>✦</span></div>
+    </div>
+    <div class="grid gap-12 md:grid-cols-[0.9fr_1.1fr] items-start">
+      <div class="portrait-frame max-w-md mx-auto md:mx-0 rotate-[1.5deg]">
+        <img src="{{ about_me.get_image_url }}" alt="Jarvis Lameck" class="block w-full rounded-sm aspect-[4/5] object-cover" />
+      </div>
+      <div class="font-serif text-[19px] leading-[1.85] text-[var(--color-ink)]/85 space-y-5">
+        <p class="drop-cap">
+          {{ about_me.paragraph_1 }}
+        </p>
+        {% if about_me.paragraph_2 %}
+        <p>
+          {{ about_me.paragraph_2 }}
+        </p>
+        {% endif %}
+        {% if about_me.paragraph_3 %}
+        <p>
+          {{ about_me.paragraph_3 }}
+        </p>
+        {% endif %}
+        {% if about_me.paragraph_4 %}
+        <p>
+          {{ about_me.paragraph_4 }}
+        </p>
+        {% endif %}
+        {% if about_me.quote %}
+        <div class="border-l-4 border-[var(--color-burgundy)] pl-4 py-2 italic text-[var(--color-burgundy)] text-xl font-display mt-4">
+          {{ about_me.quote }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Chapter II: Craft & Skills (EXPANDED) -->
+<section id="skills" class="bg-[var(--color-ink)] text-[var(--color-parchment)] py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-14">
+      <p class="font-serif italic text-lg text-[var(--color-gilded)]">~ Chapter II ~</p>
+      <h2 class="font-display text-4xl md:text-6xl font-bold mt-2 text-[var(--color-parchment)]">Craft &amp; Skills</h2>
+      <div class="ornate-divider mx-auto mt-5 w-48"><span>✦</span></div>
+      <p class="font-serif text-stone-300 max-w-2xl mx-auto mt-4 text-lg">
+        A comprehensive breakdown of domain capabilities, technical expertise, and hands-on IT proficiency.
+      </p>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- Skill 1 -->
+      <div class="group relative overflow-hidden rounded-md border border-[var(--color-gilded)]/30 bg-stone-900/60 transition duration-500 hover:border-[var(--color-gilded)]">
+        <div class="relative h-44 overflow-hidden">
+          <img src="{% static 'images/banner-mobile.jpg' %}" alt="Software Development" class="h-full w-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-85 transition duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-transparent"></div>
+          <span class="absolute bottom-3 left-3 rounded bg-[var(--color-royal)] px-2.5 py-1 text-xs font-semibold text-white">Full-Stack &amp; Web</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl font-bold text-[var(--color-parchment)]">Software Development</h3>
+          <p class="font-serif mt-2 text-stone-300 leading-relaxed text-[16px]">
+            Building robust, user-centric web and mobile applications using Python, Django, React, TypeScript, and modern REST APIs with clean architecture.
+          </p>
+        </div>
+      </div>
+
+      <!-- Skill 2 -->
+      <div class="group relative overflow-hidden rounded-md border border-[var(--color-gilded)]/30 bg-stone-900/60 transition duration-500 hover:border-[var(--color-gilded)]">
+        <div class="relative h-44 overflow-hidden">
+          <img src="{% static 'images/banner-network.jpg' %}" alt="Networking Support" class="h-full w-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-85 transition duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-transparent"></div>
+          <span class="absolute bottom-3 left-3 rounded bg-[var(--color-emerald)] px-2.5 py-1 text-xs font-semibold text-white">Cisco CCNA</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl font-bold text-[var(--color-parchment)]">Networking &amp; Routing</h3>
+          <p class="font-serif mt-2 text-stone-300 leading-relaxed text-[16px]">
+            Configuring switches, routers, VLANs, subnetting, IPv4/IPv6 addressing, and securing enterprise network infrastructure with CCNA expertise.
+          </p>
+        </div>
+      </div>
+
+      <!-- Skill 3 -->
+      <div class="group relative overflow-hidden rounded-md border border-[var(--color-gilded)]/30 bg-stone-900/60 transition duration-500 hover:border-[var(--color-gilded)]">
+        <div class="relative h-44 overflow-hidden">
+          <img src="{% static 'images/banner-cyber.jpg' %}" alt="Cybersecurity" class="h-full w-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-85 transition duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-transparent"></div>
+          <span class="absolute bottom-3 left-3 rounded bg-[var(--color-burgundy)] px-2.5 py-1 text-xs font-semibold text-white">Cyber Defense</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl font-bold text-[var(--color-parchment)]">Cybersecurity Shield</h3>
+          <p class="font-serif mt-2 text-stone-300 leading-relaxed text-[16px]">
+            Hardening systems, threat mitigation, security policy implementation, raising security awareness, and protecting digital data assets.
+          </p>
+        </div>
+      </div>
+
+      <!-- Skill 4 -->
+      <div class="group relative overflow-hidden rounded-md border border-[var(--color-gilded)]/30 bg-stone-900/60 transition duration-500 hover:border-[var(--color-gilded)]">
+        <div class="relative h-44 overflow-hidden">
+          <img src="{% static 'images/banner-mobile.jpg' %}" alt="Mobile Apps" class="h-full w-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-85 transition duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-transparent"></div>
+          <span class="absolute bottom-3 left-3 rounded bg-[var(--color-gilded-deep)] px-2.5 py-1 text-xs font-semibold text-white">Mobile Development</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl font-bold text-[var(--color-parchment)]">Mobile Solutions</h3>
+          <p class="font-serif mt-2 text-stone-300 leading-relaxed text-[16px]">
+            Crafting responsive Android applications designed to solve student and business challenges with fast performance and intuitive navigation.
+          </p>
+        </div>
+      </div>
+
+      <!-- Skill 5 -->
+      <div class="group relative overflow-hidden rounded-md border border-[var(--color-gilded)]/30 bg-stone-900/60 transition duration-500 hover:border-[var(--color-gilded)]">
+        <div class="relative h-44 overflow-hidden">
+          <img src="{% static 'images/banner-server.jpg' %}" alt="IT Support" class="h-full w-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-85 transition duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-transparent"></div>
+          <span class="absolute bottom-3 left-3 rounded bg-amber-700 px-2.5 py-1 text-xs font-semibold text-white">TCRA &amp; TRA Experience</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl font-bold text-[var(--color-parchment)]">IT Infrastructure &amp; Support</h3>
+          <p class="font-serif mt-2 text-stone-300 leading-relaxed text-[16px]">
+            Hands-on IT technical support, hardware troubleshooting, system administration, and user assistance developed during key roles at TCRA &amp; TRA.
+          </p>
+        </div>
+      </div>
+
+      <!-- Skill 6 -->
+      <div class="group relative overflow-hidden rounded-md border border-[var(--color-gilded)]/30 bg-stone-900/60 transition duration-500 hover:border-[var(--color-gilded)]">
+        <div class="relative h-44 overflow-hidden">
+          <img src="{% static 'images/banner-server.jpg' %}" alt="Database & Cloud" class="h-full w-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-85 transition duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-transparent"></div>
+          <span class="absolute bottom-3 left-3 rounded bg-indigo-700 px-2.5 py-1 text-xs font-semibold text-white">Database &amp; Data</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl font-bold text-[var(--color-parchment)]">Database &amp; Data Systems</h3>
+          <p class="font-serif mt-2 text-stone-300 leading-relaxed text-[16px]">
+            Relational database design, SQL optimization, data integrity, automated backup strategies, and cloud storage integration for reliable systems.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Chapter III: The CoverPage Project -->
+<section id="projects" class="paper-grain py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1.2fr] items-center">
+      <div>
+        <p class="font-serif italic text-lg text-[var(--color-burgundy)]">~ Chapter III ~</p>
+        <h3 class="font-display text-4xl md:text-5xl font-bold text-[var(--color-burgundy)] mt-1">CoverPage</h3>
+        <p class="font-serif italic text-xl mt-1 text-[var(--color-ink)]/70">Digital Cover Page Generator for Academic Excellence</p>
+        <div class="ornate-divider my-5 max-w-xs"><span>✦</span></div>
+        <p class="font-serif text-[18px] leading-[1.8] text-[var(--color-ink)]/85">
+          CoverPage is a modern digital platform designed to simplify and automate the process of creating academic cover pages. Students input their details and the system instantly produces a polished, professional cover page — saving time and ensuring consistency.
+        </p>
+        <ul class="mt-6 space-y-2.5 font-serif text-[18px] text-[var(--color-ink)]/85">
+          <li class="flex items-center gap-3"><span class="text-[var(--color-gilded-deep)]">✦</span> Fast &amp; automated cover page generation</li>
+          <li class="flex items-center gap-3"><span class="text-[var(--color-gilded-deep)]">✦</span> Clean, professional academic formatting</li>
+          <li class="flex items-center gap-3"><span class="text-[var(--color-gilded-deep)]">✦</span> User-friendly interface designed for university students</li>
+          <li class="flex items-center gap-3"><span class="text-[var(--color-gilded-deep)]">✦</span> Trusted by students across multiple higher learning institutions</li>
+        </ul>
+        <div class="mt-8">
+          <a href="https://coverpage.co.tz" target="_blank" rel="noreferrer" class="btn-primary">
+            Visit coverpage.co.tz <span>↗</span>
+          </a>
+        </div>
+      </div>
+      <!-- CoverPage Screenshot from images folder -->
+      <div class="portrait-frame rotate-[-1deg] hover:rotate-0 transition duration-700">
+        <img src="{% static 'images/Create Coverpage Online Free – Coverpage Maker - Google Chrome 25_06_2026 12_16_05.png' %}" alt="CoverPage Screenshot" class="block w-full rounded-sm" onerror="this.src='{% static 'images/coverpage-mockup.jpg' %}'" />
+        <p class="font-serif italic text-center text-sm text-stone-600 mt-2">Screenshot of the CoverPage Platform Interface under Coverpage</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Chapter IV: Manifestation & Mindset -->
+<section id="mindset" class="relative overflow-hidden bg-[var(--color-ink)] text-[var(--color-parchment)] py-24">
+  <div class="absolute inset-0 opacity-15">
+    <img src="{% static 'images/banner-server.jpg' %}" alt="" class="h-full w-full object-cover" />
+  </div>
+  <div class="relative mx-auto max-w-5xl px-6 text-center">
+    <p class="font-serif italic text-[var(--color-gilded)] text-lg">~ Chapter IV ~</p>
+    <h2 class="font-display text-4xl md:text-6xl font-bold mt-2">Manifestation &amp; Mindset</h2>
+    <div class="ornate-divider mx-auto mt-5 w-48"><span>✦</span></div>
+
+    <div class="my-8">
+      <span class="font-display text-6xl text-[var(--color-gilded)] leading-none">“</span>
+      <p class="font-display italic text-3xl md:text-5xl leading-tight text-[var(--color-parchment)]">
+        The thing happens at the point you stop chasing it.
+      </p>
+    </div>
+
+    <div class="mt-8 max-w-3xl mx-auto space-y-5 font-serif text-lg text-stone-200 leading-[1.85] text-left md:text-center">
+      <p>
+        One lesson I have learned in life is that opportunities, success, and growth often come when we focus on improving ourselves rather than obsessing over outcomes. Constantly chasing something creates pressure and frustration, while patience, preparation, and consistent effort allow things to unfold naturally.
+      </p>
+      <p>
+        Manifestation is not just about wishing for success — it is about becoming the person who is ready for it. Work on your skills, stay disciplined, trust the process, and allow the right opportunities to find you.
+      </p>
+    </div>
+
+    <!-- Video Framing Container -->
+    <div class="mt-12 mx-auto max-w-3xl video-frame-container">
+      <p class="font-serif italic text-[var(--color-gilded)] mb-3 text-center">— Visual Reflection on Manifestation &amp; Mindset —</p>
+      <div class="aspect-video w-full overflow-hidden rounded bg-black">
+        <video controls playsinline preload="metadata" poster="{% static 'images/banner-server.jpg' %}" class="w-full h-full object-cover">
+          <source src="{% static 'video/manifestation.mp4' %}" type="video/mp4">
+          Your browser does not support HTML5 video playback.
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Chapter V: Kind Words -->
+<section id="testimonials" class="paper-grain py-20">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-14">
+      <p class="font-serif italic text-lg text-[var(--color-burgundy)]">~ Chapter V ~</p>
+      <h2 class="font-display text-4xl md:text-5xl font-bold mt-2 text-[var(--color-ink)]">Kind Words</h2>
+      <div class="ornate-divider mx-auto mt-5 w-48"><span>✦</span></div>
+    </div>
+    <div class="grid gap-6 md:grid-cols-3">
+      <figure class="rounded-md border border-[var(--color-gilded)]/40 bg-white/70 p-7 shadow-sm">
+        <span class="text-3xl text-[var(--color-burgundy)]">“</span>
+        <blockquote class="font-serif italic text-[18px] text-stone-800 leading-[1.7]">
+          CoverPage saved me hours every week. Submitting assignments has never looked this professional.
+        </blockquote>
+        <figcaption class="mt-5 border-t border-[var(--color-gilded)]/40 pt-4">
+          <p class="font-display font-bold text-stone-900">Asha M.</p>
+          <p class="font-serif text-sm text-stone-600">Student, UDSM</p>
+        </figcaption>
+      </figure>
+
+      <figure class="rounded-md border border-[var(--color-gilded)]/40 bg-white/70 p-7 shadow-sm">
+        <span class="text-3xl text-[var(--color-burgundy)]">“</span>
+        <blockquote class="font-serif italic text-[18px] text-stone-800 leading-[1.7]">
+          Jarvis is meticulous with networks. He resolved issues our team had postponed for weeks.
+        </blockquote>
+        <figcaption class="mt-5 border-t border-[var(--color-gilded)]/40 pt-4">
+          <p class="font-display font-bold text-stone-900">Daniel K.</p>
+          <p class="font-serif text-sm text-stone-600">IT Lead, Dar es Salaam</p>
+        </figcaption>
+      </figure>
+
+      <figure class="rounded-md border border-[var(--color-gilded)]/40 bg-white/70 p-7 shadow-sm">
+        <span class="text-3xl text-[var(--color-burgundy)]">“</span>
+        <blockquote class="font-serif italic text-[18px] text-stone-800 leading-[1.7]">
+          A brilliant mind with a giving heart. His tutorials made subnetting and networking click for me.
+        </blockquote>
+        <figcaption class="mt-5 border-t border-[var(--color-gilded)]/40 pt-4">
+          <p class="font-display font-bold text-stone-900">Neema J.</p>
+          <p class="font-serif text-sm text-stone-600">Student, DIT</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- Chapter VI: Certifications & Milestones -->
+<section id="certs" class="bg-[var(--color-ink)] text-[var(--color-parchment)] py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-14">
+      <p class="font-serif italic text-lg text-[var(--color-gilded)]">~ Chapter VI ~</p>
+      <h2 class="font-display text-4xl md:text-6xl font-bold mt-2">Certifications &amp; Milestones</h2>
+      <div class="ornate-divider mx-auto mt-5 w-48"><span>✦</span></div>
+    </div>
+
+    <!-- CCNA Certificates from images folder -->
+    <div class="grid gap-10 md:grid-cols-2 mb-16 max-w-5xl mx-auto">
+      <div class="group text-center">
+        <div class="portrait-frame">
+          <img src="{% static 'images/ccna 1.png' %}" alt="Cisco CCNA Certificate 1" class="block w-full rounded-sm aspect-square object-cover" onerror="this.src='{% static 'images/cert-ccna.jpg' %}'" />
+        </div>
+        <div class="mt-5">
+          <span class="text-2xl">🏆</span>
+          <h3 class="font-display text-2xl font-bold mt-1">Cisco CCNA Certificate</h3>
+          <p class="font-serif italic text-stone-300">Routing, switching &amp; network infrastructure fundamentals</p>
+        </div>
+      </div>
+
+      <div class="group text-center">
+        <div class="portrait-frame">
+          <img src="{% static 'images/cisco 1.png' %}" alt="Cisco CCNA Certificate 2" class="block w-full rounded-sm aspect-square object-cover" onerror="this.src='{% static 'images/cert-cisco.jpg' %}'" />
+        </div>
+        <div class="mt-5">
+          <span class="text-2xl">🎖️</span>
+          <h3 class="font-display text-2xl font-bold mt-1">Cisco Certified Network Associate</h3>
+          <p class="font-serif italic text-stone-300">Validated knowledge for modern enterprise networks</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="font-serif italic text-center text-[var(--color-gilded)] mb-6">— Featured journey banners —</p>
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="overflow-hidden rounded-md border border-[var(--color-gilded)]/30">
+        <img src="{% static 'images/banner-server.jpg' %}" alt="Server" class="h-40 w-full object-cover hover:scale-110 transition duration-700" />
+      </div>
+      <div class="overflow-hidden rounded-md border border-[var(--color-gilded)]/30">
+        <img src="{% static 'images/banner-cyber.jpg' %}" alt="Cybersecurity" class="h-40 w-full object-cover hover:scale-110 transition duration-700" />
+      </div>
+      <div class="overflow-hidden rounded-md border border-[var(--color-gilded)]/30">
+        <img src="{% static 'images/banner-network.jpg' %}" alt="Networking" class="h-40 w-full object-cover hover:scale-110 transition duration-700" />
+      </div>
+      <div class="overflow-hidden rounded-md border border-[var(--color-gilded)]/30">
+        <img src="{% static 'images/banner-mobile.jpg' %}" alt="Mobile Apps" class="h-40 w-full object-cover hover:scale-110 transition duration-700" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Chapter VII: From the Journal (Blog) -->
+<section id="blog" class="paper-grain py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-14">
+      <p class="font-serif italic text-lg text-[var(--color-burgundy)]">~ Chapter VII ~</p>
+      <h2 class="font-display text-4xl md:text-5xl font-bold mt-2 text-[var(--color-ink)]">From the Journal</h2>
+      <div class="ornate-divider mx-auto mt-5 w-48"><span>✦</span></div>
+      <p class="font-serif text-stone-600 max-w-xl mx-auto mt-2 text-lg">
+        Thoughts, tutorials, and practical notes on networking, cybersecurity, and tech innovation.
+      </p>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-3">
+      {% for post in recent_posts %}
+      <article class="group rounded-md overflow-hidden border border-[var(--color-gilded)]/40 bg-white/70 hover:shadow-xl transition duration-500 flex flex-col">
+        <div class="overflow-hidden h-52 relative">
+          <img src="{{ post.get_image_url }}" alt="{{ post.title }}" class="h-full w-full object-cover group-hover:scale-110 transition duration-700" />
+          <span class="absolute top-3 left-3 rounded-full bg-[var(--color-burgundy)] px-3 py-1 text-xs font-serif text-[var(--color-parchment)]">
+            {{ post.tag }}
+          </span>
+        </div>
+        <div class="p-6 flex flex-1 flex-col">
+          <p class="font-serif italic text-[var(--color-burgundy)] text-sm mb-1">{{ post.tag }} · {{ post.date_display }}</p>
+          <h3 class="font-display text-2xl font-bold text-[var(--color-ink)] leading-snug">{{ post.title }}</h3>
+          <p class="font-serif mt-2 text-stone-700 text-sm leading-relaxed flex-1">{{ post.summary }}</p>
+          <div class="mt-5 pt-3 border-t border-stone-200 flex justify-between items-center">
+            <a href="{% url 'blog_detail' post.slug %}" class="inline-flex items-center gap-2 font-serif italic text-[var(--color-burgundy)] font-semibold hover:underline">
+              Read more &rarr;
+            </a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="{% url 'blog_list' %}" class="btn-secondary">
+        Browse all journal entries &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Chapter VIII: Let's Talk (Contact) -->
+<section id="contact" class="paper-grain py-24">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="text-center mb-14">
+      <p class="font-serif italic text-lg text-[var(--color-burgundy)]">~ Chapter VIII ~</p>
+      <h2 class="font-display text-4xl md:text-5xl font-bold mt-2 text-[var(--color-ink)]">Let's Talk</h2>
+      <div class="ornate-divider mx-auto mt-5 w-48"><span>✦</span></div>
+    </div>
+
+    <div class="grid gap-10 md:grid-cols-2">
+      <!-- Reach Out Card -->
+      <div class="rounded-md border-2 border-[var(--color-ink)] bg-white/70 p-8 shadow-sm">
+        <h3 class="font-display text-3xl font-bold text-[var(--color-ink)]">Reach Out</h3>
+        <p class="font-serif italic mt-1 text-stone-600">Always open to projects, collaborations, IT consultation, and tech conversations.</p>
+        
+        <ul class="mt-6 space-y-4 font-serif text-[18px] text-stone-800">
+          <li class="flex items-center gap-3">
+            <span class="text-xl">📞</span> +255 766 456 455
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="text-xl">✉️</span> jarvismagira@gmail.com
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="text-xl">📍</span> Dar es Salaam, Tanzania
+          </li>
+        </ul>
+
+        <div class="ornate-divider my-6"><span>✦</span></div>
+
+        <p class="font-serif text-sm font-semibold text-stone-700 mb-3">Connect on Social Media:</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://www.linkedin.com/in/jarvis-lameck-b048a9386?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noreferrer" class="btn-primary">
+            <svg class="h-4 w-4 fill-current inline" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.78a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24Z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://www.instagram.com/jarvx_official?igsi=Mm56eWV3NnhkZ3I3" target="_blank" rel="noreferrer" class="btn-gold">
+            <svg class="h-4 w-4 fill-current inline" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Instagram
+          </a>
+        </div>
+      </div>
+
+      <!-- Send a Message Form -->
+      <form id="contact-form" class="rounded-md bg-[var(--color-ink)] p-8 text-[var(--color-parchment)] shadow-lg">
+        <h3 class="font-display text-3xl font-bold">Send a Message</h3>
+        <p class="font-serif italic text-[var(--color-gilded)]">A project inquiry, collaboration idea, or a simple hello.</p>
+        
+        <div id="contact-form-feedback" class="mt-3 font-serif text-sm"></div>
+
+        <div class="mt-5 space-y-4">
+          <div>
+            <input id="contact-name" name="name" required class="w-full rounded-sm border border-[var(--color-gilded)]/40 bg-transparent px-4 py-3 font-serif placeholder:text-stone-400 focus:outline-none focus:border-[var(--color-gilded)] text-white" placeholder="Your full name" />
+          </div>
+          <div>
+            <input id="contact-email" name="email" type="email" required class="w-full rounded-sm border border-[var(--color-gilded)]/40 bg-transparent px-4 py-3 font-serif placeholder:text-stone-400 focus:outline-none focus:border-[var(--color-gilded)] text-white" placeholder="Your email address" />
+          </div>
+          <div>
+            <textarea id="contact-message" name="message" rows="5" required class="w-full rounded-sm border border-[var(--color-gilded)]/40 bg-transparent px-4 py-3 font-serif placeholder:text-stone-400 focus:outline-none focus:border-[var(--color-gilded)] text-white" placeholder="Tell me about your project or inquiry..."></textarea>
+          </div>
+          <button type="submit" class="w-full btn-gold justify-center py-3.5 text-base">
+            Send Message ✉️
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
