@@ -7,11 +7,16 @@ SECRET_KEY = os.environ.get(
     'SECRET_KEY', 'django-insecure-jarvis-lameck-portfolio-secret-key-change-in-prod'
 )
 
-DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
+# Render provides the public hostname for the running web service.  Keeping
+# localhost here makes local development work without weakening production
+# host validation with a wildcard.
 ALLOWED_HOSTS = os.environ.get(
-    'ALLOWED_HOSTS', '.onrender.com,localhost,127.0.0.1,*'
+    'ALLOWED_HOSTS',
+    f"{os.environ.get('RENDER_EXTERNAL_HOSTNAME', '')},localhost,127.0.0.1",
 ).split(',')
+ALLOWED_HOSTS = [host for host in ALLOWED_HOSTS if host]
 CSRF_TRUSTED_ORIGINS = os.environ.get(
     'CSRF_TRUSTED_ORIGINS', 'https://*.onrender.com'
 ).split(',')
