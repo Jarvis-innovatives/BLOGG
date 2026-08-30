@@ -8,10 +8,10 @@
     "image": "banner-network.jpg",
     "image_file": "",
     "paragraph_1": "My name is Jarvis Lameck Magira, an aspiring technology professional and digital innovator currently pursuing my studies at the Dar es Salaam Institute of Technology (DIT). I am passionate about information technology, networking, software development, and creating innovative digital solutions that address real-world challenges.",
-    "paragraph_2": "Throughout my academic and professional journey, I have gained valuable experience providing IT support and solving technical issues at the Tanzania Communications Regulatory Authority (TCRA), TRA, and other organizations � strengthening my skills in troubleshooting, network administration, and system support.",
+    "paragraph_2": "Throughout my academic and professional journey, I have gained valuable experience providing IT support and solving technical issues at the Tanzania Communications Regulatory Authority (TCRA), TRA, and other organizations — strengthening my skills in troubleshooting, network administration, and system support.",
     "paragraph_3": "As a Cisco Certified Network Associate (CCNA), I have a strong foundation in computer networking, network security, and infrastructure management. I am also a mobile application developer dedicated to building solutions that improve efficiency, accessibility, and user experience.",
-    "paragraph_4": "I am the creator of CoverPage � a digital platform that helps students generate professional academic cover pages quickly and easily. My vision is to keep innovating, advance cybersecurity awareness, and contribute to the growth of the technology sector in Tanzania and beyond.",
-    "quote": "�I believe technology has the power to transform lives.�"
+    "paragraph_4": "I am the creator of CoverPage — a digital platform that helps students generate professional academic cover pages quickly and easily. My vision is to keep innovating, advance cybersecurity awareness, and contribute to the growth of the technology sector in Tanzania and beyond.",
+    "quote": "“I believe technology has the power to transform lives.”"
   }
 },
 {
@@ -67,7 +67,7 @@
         "items": [
           "Practice with a subnetting app for five minutes every morning.",
           "Always write the mask, block size, and network addresses before answering.",
-          "Use real-world scenarios � VLANs, branch offices, wireless guest networks.",
+          "Use real-world scenarios — VLANs, branch offices, wireless guest networks.",
           "Teach someone else; teaching exposes the gaps in your own understanding."
         ]
       }
@@ -201,7 +201,7 @@
     "tag": "Career",
     "date_display": "Feb 2026",
     "read_time": "8 min read",
-    "summary": "Lessons from my internships at TCRA, TRA, and beyond � and how hands-on experience beats classroom theory.",
+    "summary": "Lessons from my internships at TCRA, TRA, and beyond — and how hands-on experience beats classroom theory.",
     "content_json": [
       {
         "type": "paragraph",
@@ -243,7 +243,7 @@
     "tag": "Projects",
     "date_display": "Jan 2026",
     "read_time": "6 min read",
-    "summary": "The story behind CoverPage � from a simple idea to a platform used by students in multiple universities.",
+    "summary": "The story behind CoverPage — from a simple idea to a platform used by students in multiple universities.",
     "content_json": [
       {
         "type": "paragraph",
@@ -574,7 +574,7 @@
       "User-friendly interface for students",
       "Trusted across multiple universities"
     ],
-    "image": "Create Coverpage Online Free � Coverpage Maker - Google Chrome 25_06_2026 12_16_05.png",
+    "image": "Create Coverpage Online Free – Coverpage Maker - Google Chrome 25_06_2026 12_16_05.png",
     "image_file": "",
     "link": "https://coverpage.co.tz"
   }
