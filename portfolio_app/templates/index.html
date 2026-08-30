@@ -47,8 +47,10 @@
 <section id="about" class="paper-grain">
   <div class="mx-auto max-w-7xl px-6 py-20">
     <div class="text-center mb-14">
-      <p class="font-serif italic text-lg text-[var(--color-burgundy)]">{{ about_me.kicker|default:"~ Chapter I ~" }}</p>
-      <h2 class="font-display text-4xl md:text-6xl font-bold mt-2 text-[var(--color-ink)]">{{ about_me.title|default:"About Me" }}</h2>
+      <p class="font-serif italic text-lg text-[var(--color-burgundy)]">{{ about_me.kicker|default:"~ Chapter I ~" }}
+      </p>
+      <h2 class="font-display text-4xl md:text-6xl font-bold mt-2 text-[var(--color-ink)]">{{
+        about_me.title|default:"About Me" }}</h2>
       <div class="ornate-divider mx-auto mt-5 w-48"><span>✦</span></div>
     </div>
     <div class="grid gap-12 md:grid-cols-[0.9fr_1.1fr] items-start">

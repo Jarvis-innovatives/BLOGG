@@ -46,9 +46,9 @@
             by:</label>
           <select id="blog-sort"
             class="w-full rounded-full border border-[var(--color-gilded)]/50 bg-white px-4 py-2.5 font-serif text-stone-800 focus:outline-none focus:border-[var(--color-burgundy)]">
-            <option value="latest" {% if selected_sort == 'latest' %}selected{% endif %}>Latest First</option>
-            <option value="oldest" {% if selected_sort == 'oldest' %}selected{% endif %}>Oldest First</option>
-            <option value="title" {% if selected_sort == 'title' %}selected{% endif %}>Title (A-Z)</option>
+            <option value="latest" {% if selected_sort=='latest' %}selected{% endif %}>Latest First</option>
+            <option value="oldest" {% if selected_sort=='oldest' %}selected{% endif %}>Oldest First</option>
+            <option value="title" {% if selected_sort=='title' %}selected{% endif %}>Title (A-Z)</option>
           </select>
         </div>
       </div>
