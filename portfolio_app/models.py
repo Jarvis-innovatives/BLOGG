@@ -1,10 +1,12 @@
+import os
+
 from django.db import models
 from django.utils.text import slugify
 
 class AboutMe(models.Model):
     kicker = models.CharField(max_length=100, default='~ Chapter I ~')
     title = models.CharField(max_length=200, default='About Me')
-    image = models.CharField(max_length=255, default='banner-network.jpg', blank=True)
+    image = models.CharField(max_length=255, default='hero-portrait.jpg', blank=True)
     image_file = models.ImageField(upload_to='about_images/', blank=True, null=True, help_text="Upload photo from your device")
     paragraph_1 = models.TextField(
         default="My name is Jarvis Lameck Magira, an aspiring technology professional and digital innovator currently pursuing my studies at the Dar es Salaam Institute of Technology (DIT). I am passionate about information technology, networking, software development, and creating innovative digital solutions that address real-world challenges."
