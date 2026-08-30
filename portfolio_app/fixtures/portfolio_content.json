@@ -1,0 +1,622 @@
+[
+{
+  "model": "portfolio_app.aboutme",
+  "pk": 1,
+  "fields": {
+    "kicker": "~ Chapter I ~",
+    "title": "About Me",
+    "image": "banner-network.jpg",
+    "image_file": "",
+    "paragraph_1": "My name is Jarvis Lameck Magira, an aspiring technology professional and digital innovator currently pursuing my studies at the Dar es Salaam Institute of Technology (DIT). I am passionate about information technology, networking, software development, and creating innovative digital solutions that address real-world challenges.",
+    "paragraph_2": "Throughout my academic and professional journey, I have gained valuable experience providing IT support and solving technical issues at the Tanzania Communications Regulatory Authority (TCRA), TRA, and other organizations � strengthening my skills in troubleshooting, network administration, and system support.",
+    "paragraph_3": "As a Cisco Certified Network Associate (CCNA), I have a strong foundation in computer networking, network security, and infrastructure management. I am also a mobile application developer dedicated to building solutions that improve efficiency, accessibility, and user experience.",
+    "paragraph_4": "I am the creator of CoverPage � a digital platform that helps students generate professional academic cover pages quickly and easily. My vision is to keep innovating, advance cybersecurity awareness, and contribute to the growth of the technology sector in Tanzania and beyond.",
+    "quote": "�I believe technology has the power to transform lives.�"
+  }
+},
+{
+  "model": "portfolio_app.blogpost",
+  "pk": 9,
+  "fields": {
+    "title": "Subnetting Without Tears",
+    "slug": "subnetting-without-tears",
+    "tag": "Networking",
+    "date_display": "May 2026",
+    "read_time": "7 min read",
+    "summary": "A CCNA-inspired walkthrough that turns subnetting from a nightmare into a five-minute calculation you can do in your head.",
+    "content_json": [
+      {
+        "type": "paragraph",
+        "text": "Subnetting is the skill that separates network technicians from network engineers. Yet, for most students, it is the single scariest topic in the CCNA syllabus. The good news? With a few simple patterns, subnetting becomes almost mechanical."
+      },
+      {
+        "type": "heading",
+        "text": "Why subnetting matters"
+      },
+      {
+        "type": "paragraph",
+        "text": "Every device on an IP network needs a unique address, but addresses alone are not enough. We also need a way to divide a network into smaller, manageable broadcast domains. That is exactly what subnetting does."
+      },
+      {
+        "type": "heading",
+        "text": "The magic of the powers of two"
+      },
+      {
+        "type": "paragraph",
+        "text": "At its heart, subnetting is about binary. Borrowing one host bit doubles the number of networks and halves the hosts per network. Borrowing two bits gives four networks, three bits gives eight, and so on. Memorize 2, 4, 8, 16, 32, 64, 128, 256 and you already own half the exam."
+      },
+      {
+        "type": "quote",
+        "text": "Subnetting is not math. It is pattern recognition dressed up as math."
+      },
+      {
+        "type": "heading",
+        "text": "A practical example"
+      },
+      {
+        "type": "paragraph",
+        "text": "Suppose you are given 192.168.1.0/24 and asked to create four subnets. You need to borrow two bits, giving you a /26 mask. The block size in the interesting octet is 256 - 192 = 64."
+      },
+      {
+        "type": "heading",
+        "text": "My daily advice"
+      },
+      {
+        "type": "list",
+        "text": "Quick habits that make subnetting faster",
+        "items": [
+          "Practice with a subnetting app for five minutes every morning.",
+          "Always write the mask, block size, and network addresses before answering.",
+          "Use real-world scenarios � VLANs, branch offices, wireless guest networks.",
+          "Teach someone else; teaching exposes the gaps in your own understanding."
+        ]
+      }
+    ],
+    "featured_image": "banner-network.jpg",
+    "image_file": "",
+    "created_at": "2026-08-26T17:06:09.462Z",
+    "is_published": true
+  }
+},
+{
+  "model": "portfolio_app.blogpost",
+  "pk": 10,
+  "fields": {
+    "title": "Understanding Cyber Attacks, Vulnerabilities, and Digital Protection",
+    "slug": "five-habits-that-keep-you-safe-online",
+    "tag": "Cybersecurity",
+    "date_display": "Apr 2026",
+    "read_time": "5 min read",
+    "summary": "Cybersecurity is the practice of protecting computers, networks, applications, systems, and data from unauthorized access, attacks, damage, and theft. As technology becomes part of everyday life, cyber threats are also becoming more sophisticated. Understanding common cyber attacks, vulnerabilities, security controls",
+    "content_json": {
+      "title": "Cybersecurity: Protecting the Digital World",
+      "summary": "A simple 10-page guide explaining cybersecurity, common cyber attacks, vulnerabilities, security tools, safe online practices, and the importance of protecting digital information.",
+      "pages": [
+        {
+          "page": 1,
+          "title": "Introduction to Cybersecurity",
+          "content": "Cybersecurity is the practice of protecting computers, mobile devices, networks, applications, and digital information from unauthorized access, damage, theft, and attacks. As people and organizations increasingly depend on technology, cybersecurity has become an important part of everyday life. It helps protect personal information, business data, financial records, and communication systems."
+        },
+        {
+          "page": 2,
+          "title": "Importance of Cybersecurity",
+          "content": "Cybersecurity is important because digital systems contain valuable information. Strong security helps protect confidentiality, integrity, and availability of information. Individuals need cybersecurity to protect accounts, passwords, photos, and financial information. Organizations need it to protect customer data, business systems, employees, and important services."
+        },
+        {
+          "page": 3,
+          "title": "Common Cyber Attacks",
+          "content": "Cyber attacks are attempts to gain unauthorized access to systems or information. Common attacks include phishing, malware, ransomware, password attacks, denial-of-service attacks, and social engineering. Attackers may use fake messages, malicious files, vulnerable software, or stolen passwords to compromise their targets."
+        },
+        {
+          "page": 4,
+          "title": "Malware and Ransomware",
+          "content": "Malware is malicious software designed to harm a computer system or perform unauthorized activities. Examples include viruses, worms, trojans, and spyware. Ransomware is a type of malware that can encrypt files and demand payment from victims. Using updated software, security tools, backups, and careful downloading practices can reduce these risks."
+        },
+        {
+          "page": 5,
+          "title": "Phishing and Social Engineering",
+          "content": "Phishing is an attack where criminals use fake emails, websites, messages, or other communication to trick people into revealing sensitive information. Social engineering focuses on manipulating people rather than directly attacking technology. Users should verify suspicious requests, avoid unknown links, check website addresses, and never share passwords or security codes unnecessarily."
+        },
+        {
+          "page": 6,
+          "title": "Cybersecurity Vulnerabilities",
+          "content": "A vulnerability is a weakness that can be exploited to compromise a system. Vulnerabilities may exist in outdated software, weak passwords, insecure network configurations, poorly designed applications, or human behavior. Regular updates, security testing, strong authentication, proper configuration, and user education can help reduce vulnerabilities."
+        },
+        {
+          "page": 7,
+          "title": "Network Security",
+          "content": "Network security protects computers and devices that communicate through networks. Important security measures include firewalls, secure Wi-Fi configurations, encryption, access control, network monitoring, and regular updates. Organizations can also separate networks using techniques such as VLANs to reduce the impact of a compromised device."
+        },
+        {
+          "page": 8,
+          "title": "Cybersecurity Tools and Technologies",
+          "content": "Cybersecurity professionals use different tools to protect systems and identify threats. Examples include antivirus software, firewalls, intrusion detection systems, intrusion prevention systems, vulnerability scanners, encryption technologies, password managers, and security monitoring platforms. These tools work together with security policies and trained users to improve protection."
+        },
+        {
+          "page": 9,
+          "title": "Cybersecurity Best Practices",
+          "content": "Good cybersecurity requires safe habits. Users should create strong and unique passwords, enable multi-factor authentication, keep software updated, back up important data, avoid suspicious links and attachments, use secure networks, and protect personal information. Organizations should also train employees, control access to sensitive systems, monitor networks, and maintain an incident response plan."
+        },
+        {
+          "page": 10,
+          "title": "The Future of Cybersecurity",
+          "content": "Cybersecurity will continue to become more important as technologies such as cloud computing, artificial intelligence, mobile applications, Internet of Things devices, and digital services grow. Cybersecurity professionals will need to continuously learn about new threats and defensive technologies. The future of cybersecurity depends on combining technology, education, responsible behavior, security policies, and continuous monitoring to create safer digital environments."
+        }
+      ]
+    },
+    "featured_image": "d1.jpg",
+    "image_file": "",
+    "created_at": "2026-08-26T17:06:09.463Z",
+    "is_published": true
+  }
+},
+{
+  "model": "portfolio_app.blogpost",
+  "pk": 11,
+  "fields": {
+    "title": "Designing Apps Users Actually Open",
+    "slug": "designing-apps-users-actually-open",
+    "tag": "Mobile",
+    "date_display": "Mar 2026",
+    "read_time": "6 min read",
+    "summary": "Building a great app is only half the battle. Here is how to make users want to return to it every day.",
+    "content_json": [
+      {
+        "type": "paragraph",
+        "text": "Thousands of mobile apps are published every month, but only a handful become part of someone's daily routine. The difference is rarely the technology; it is the design. Here is what I have learned from building CoverPage."
+      },
+      {
+        "type": "heading",
+        "text": "Solve one problem clearly"
+      },
+      {
+        "type": "paragraph",
+        "text": "Users do not download apps for features. They download them to solve problems. If your app can remove a single frustration in under a minute, people will remember it."
+      },
+      {
+        "type": "heading",
+        "text": "Respect the user's time"
+      },
+      {
+        "type": "paragraph",
+        "text": "Every screen should ask for the minimum information needed. Every loading state should be short."
+      },
+      {
+        "type": "quote",
+        "text": "The best app is not the one with the most features. It is the one the user cannot imagine living without."
+      }
+    ],
+    "featured_image": "banner-mobile.jpg",
+    "image_file": "",
+    "created_at": "2026-08-26T17:06:09.477Z",
+    "is_published": true
+  }
+},
+{
+  "model": "portfolio_app.blogpost",
+  "pk": 12,
+  "fields": {
+    "title": "From IT Intern to Network Professional",
+    "slug": "from-it-intern-to-network-professional",
+    "tag": "Career",
+    "date_display": "Feb 2026",
+    "read_time": "8 min read",
+    "summary": "Lessons from my internships at TCRA, TRA, and beyond � and how hands-on experience beats classroom theory.",
+    "content_json": [
+      {
+        "type": "paragraph",
+        "text": "Classroom theory gives you the vocabulary, but internships give you the story. My time at the Tanzania Communications Regulatory Authority (TCRA) and Tanzania Revenue Authority (TRA) taught me more about real-world IT than any textbook could."
+      },
+      {
+        "type": "heading",
+        "text": "What TCRA taught me"
+      },
+      {
+        "type": "paragraph",
+        "text": "At TCRA, I saw how national communication infrastructure is monitored, maintained, and protected. I learned that uptime is not a feature; it is a promise."
+      },
+      {
+        "type": "heading",
+        "text": "What TRA taught me"
+      },
+      {
+        "type": "paragraph",
+        "text": "At TRA, I worked alongside IT support teams handling real users with real deadlines. The biggest lesson? People do not remember the technical fix; they remember how you treated them while fixing it."
+      },
+      {
+        "type": "quote",
+        "text": "Your degree opens the door. Your attitude and experience keep you in the room."
+      }
+    ],
+    "featured_image": "banner-server.jpg",
+    "image_file": "",
+    "created_at": "2026-08-26T17:06:09.479Z",
+    "is_published": true
+  }
+},
+{
+  "model": "portfolio_app.blogpost",
+  "pk": 13,
+  "fields": {
+    "title": "Building CoverPage, One Student at a Time",
+    "slug": "building-coverpage-one-student-at-a-time",
+    "tag": "Projects",
+    "date_display": "Jan 2026",
+    "read_time": "6 min read",
+    "summary": "The story behind CoverPage � from a simple idea to a platform used by students in multiple universities.",
+    "content_json": [
+      {
+        "type": "paragraph",
+        "text": "CoverPage started as a frustration. I saw students wasting time formatting academic cover pages instead of focusing on their actual work. I believed there had to be a faster, cleaner way."
+      },
+      {
+        "type": "heading",
+        "text": "The growth"
+      },
+      {
+        "type": "paragraph",
+        "text": "What began as a tool for my classmates spread to other universities. Today, CoverPage is used by students at DIT, UDSM, and beyond."
+      },
+      {
+        "type": "quote",
+        "text": "Build something that solves your own problem. If it works for you, it will probably work for others."
+      }
+    ],
+    "featured_image": "coverpage-mockup.jpg",
+    "image_file": "",
+    "created_at": "2026-08-26T17:06:09.493Z",
+    "is_published": true
+  }
+},
+{
+  "model": "portfolio_app.blogpost",
+  "pk": 14,
+  "fields": {
+    "title": "Manifestation and the Tech Journey",
+    "slug": "manifestation-and-the-tech-journey",
+    "tag": "Mindset",
+    "date_display": "Dec 2025",
+    "read_time": "4 min read",
+    "summary": "Why patience, preparation, and trust in the process matter more than chasing every opportunity.",
+    "content_json": {
+      "title": "Manifestation and Mindset: Transforming Thoughts into Action",
+      "summary": "Manifestation begins with the way you think, but real transformation comes from combining a positive mindset with clear goals, consistent action, discipline, and belief in yourself. Your thoughts influence your decisions, your decisions shape your habits, and your habits contribute to the life you build.",
+      "content": [
+        {
+          "topic": "1. Understanding Manifestation",
+          "subtopics": [
+            {
+              "title": "What Is Manifestation?",
+              "explanation": "Manifestation is the practice of focusing your thoughts, intentions, and goals on the future you want while taking meaningful steps toward achieving it."
+            },
+            {
+              "title": "Thoughts and Direction",
+              "explanation": "Your thoughts influence what you pay attention to, how you interpret opportunities, and the decisions you make. Positive thinking can help you develop a more constructive direction."
+            },
+            {
+              "title": "Manifestation and Reality",
+              "explanation": "Manifestation should not be viewed as simply wishing for something and expecting it to appear. Lasting results require planning, effort, learning, patience, and action."
+            }
+          ]
+        },
+        {
+          "topic": "2. The Power of Mindset",
+          "subtopics": [
+            {
+              "title": "Growth Mindset",
+              "explanation": "A growth mindset is the belief that abilities can improve through learning, practice, persistence, and experience."
+            },
+            {
+              "title": "Positive Mindset",
+              "explanation": "A positive mindset helps you focus on possibilities and solutions instead of allowing difficulties to completely control your attitude."
+            },
+            {
+              "title": "Self-Belief",
+              "explanation": "Believing that you are capable of learning and improving can give you the confidence to take action even when success is not guaranteed."
+            }
+          ]
+        },
+        {
+          "topic": "3. Vision and Clear Goals",
+          "subtopics": [
+            {
+              "title": "Create a Vision",
+              "explanation": "A clear vision gives you a picture of the kind of person and life you want to build."
+            },
+            {
+              "title": "Set Specific Goals",
+              "explanation": "Instead of simply wishing for success, define measurable goals that tell you exactly what you want to accomplish."
+            },
+            {
+              "title": "Break Goals into Steps",
+              "explanation": "Large dreams become easier to pursue when they are divided into smaller daily, weekly, and monthly actions."
+            }
+          ]
+        },
+        {
+          "topic": "4. The Power of Belief",
+          "subtopics": [
+            {
+              "title": "Believe in Possibility",
+              "explanation": "Believing that improvement and achievement are possible can motivate you to explore opportunities and continue working toward your goals."
+            },
+            {
+              "title": "Overcoming Limiting Beliefs",
+              "explanation": "Limiting beliefs such as 'I cannot do it' can prevent action. Replacing them with realistic and constructive thoughts can encourage growth."
+            },
+            {
+              "title": "Confidence Through Action",
+              "explanation": "Confidence often grows when you take action, gain experience, overcome small challenges, and see evidence of your own progress."
+            }
+          ]
+        },
+        {
+          "topic": "5. Visualization",
+          "subtopics": [
+            {
+              "title": "Imagine Your Desired Future",
+              "explanation": "Visualization involves mentally imagining your goals and the steps required to achieve them."
+            },
+            {
+              "title": "Visualize the Process",
+              "explanation": "Instead of imagining only the final result, visualize yourself studying, practicing, working, solving problems, and overcoming obstacles."
+            },
+            {
+              "title": "Turn Vision into Action",
+              "explanation": "Visualization becomes more useful when it motivates specific behaviors and helps you stay focused on your priorities."
+            }
+          ]
+        },
+        {
+          "topic": "6. Affirmations and Self-Talk",
+          "subtopics": [
+            {
+              "title": "Positive Self-Talk",
+              "explanation": "The way you speak to yourself can influence your motivation and attitude. Constructive self-talk can help you respond to challenges more effectively."
+            },
+            {
+              "title": "Creating Useful Affirmations",
+              "explanation": "Effective affirmations should be meaningful and connected to behaviors, such as 'I am committed to learning and improving every day.'"
+            },
+            {
+              "title": "Consistency Matters",
+              "explanation": "Repeating positive statements alone does not guarantee results. Affirmations are most valuable when they support consistent effort and responsible decisions."
+            }
+          ]
+        },
+        {
+          "topic": "7. Discipline and Consistency",
+          "subtopics": [
+            {
+              "title": "Motivation Is Not Enough",
+              "explanation": "Motivation can change from day to day, while discipline helps you continue working toward important goals even when you do not feel motivated."
+            },
+            {
+              "title": "Build Daily Habits",
+              "explanation": "Small actions repeated consistently can develop into habits that move you closer to your long-term goals."
+            },
+            {
+              "title": "Stay Consistent",
+              "explanation": "Progress usually comes from continuing to take useful actions over time rather than expecting immediate transformation."
+            }
+          ]
+        },
+        {
+          "topic": "8. Overcoming Failure and Doubt",
+          "subtopics": [
+            {
+              "title": "Failure as Feedback",
+              "explanation": "Failure does not have to define you. It can provide information about what needs to change, improve, or be learned."
+            },
+            {
+              "title": "Learn from Setbacks",
+              "explanation": "After a setback, examine what happened, identify lessons, adjust your strategy, and continue moving forward."
+            },
+            {
+              "title": "Develop Resilience",
+              "explanation": "Resilience is the ability to recover from difficulties and continue pursuing meaningful goals despite challenges."
+            }
+          ]
+        },
+        {
+          "topic": "9. Gratitude and Positive Perspective",
+          "subtopics": [
+            {
+              "title": "Practice Gratitude",
+              "explanation": "Recognizing the good things already present in your life can encourage appreciation and help you maintain a balanced perspective."
+            },
+            {
+              "title": "Focus on Progress",
+              "explanation": "Comparing your current position with your previous progress can help you recognize growth instead of focusing only on what you have not achieved."
+            },
+            {
+              "title": "Appreciate the Journey",
+              "explanation": "Success is not only about reaching a final destination. The skills, relationships, lessons, and experiences gained along the way are also valuable."
+            }
+          ]
+        },
+        {
+          "topic": "10. From Mindset to Manifestation",
+          "subtopics": [
+            {
+              "title": "Think Clearly",
+              "explanation": "Define what you want and understand why it matters to you."
+            },
+            {
+              "title": "Act Intentionally",
+              "explanation": "Turn your goals into practical actions and make decisions that move you toward your desired future."
+            },
+            {
+              "title": "Become the Person Who Takes Action",
+              "explanation": "The most powerful form of manifestation is not simply imagining a better future, but developing the mindset, habits, knowledge, discipline, and actions required to build it."
+            }
+          ]
+        }
+      ],
+      "key_message": "Your mindset shapes your direction, but your actions shape your results. Think with purpose, believe in your ability to grow, set clear goals, take consistent action, learn from failure, and remain patient with the process."
+    },
+    "featured_image": "hero-portrait.jpg",
+    "image_file": "",
+    "created_at": "2026-08-26T17:06:09.493Z",
+    "is_published": true
+  }
+},
+{
+  "model": "portfolio_app.certificate",
+  "pk": 3,
+  "fields": {
+    "title": "Cisco CCNA",
+    "subtitle": "Routing, switching & network fundamentals",
+    "image": "ccna 1.png",
+    "image_file": "",
+    "order": 1
+  }
+},
+{
+  "model": "portfolio_app.certificate",
+  "pk": 4,
+  "fields": {
+    "title": "Cisco Certified Network Associate",
+    "subtitle": "Validated knowledge for modern enterprise networks",
+    "image": "cisco 1.png",
+    "image_file": "",
+    "order": 2
+  }
+},
+{
+  "model": "portfolio_app.skill",
+  "pk": 7,
+  "fields": {
+    "title": "Software Development",
+    "category": "Full-Stack & Web",
+    "description": "Building robust, user-centric web and mobile applications with Python, Django, React, TypeScript, and modern REST APIs.",
+    "image": "banner-mobile.jpg",
+    "image_file": "",
+    "accent": "var(--color-royal)",
+    "order": 1
+  }
+},
+{
+  "model": "portfolio_app.skill",
+  "pk": 8,
+  "fields": {
+    "title": "Networking & Routing",
+    "category": "Cisco CCNA",
+    "description": "Configuring, troubleshooting, and securing enterprise network infrastructure (CCNA).",
+    "image": "banner-network.jpg",
+    "image_file": "",
+    "accent": "var(--color-emerald)",
+    "order": 2
+  }
+},
+{
+  "model": "portfolio_app.skill",
+  "pk": 9,
+  "fields": {
+    "title": "Cybersecurity Shield",
+    "category": "Cyber Defense",
+    "description": "Hardening systems, threat mitigation, security policy implementation, and security awareness.",
+    "image": "banner-cyber.jpg",
+    "image_file": "",
+    "accent": "var(--color-burgundy)",
+    "order": 3
+  }
+},
+{
+  "model": "portfolio_app.skill",
+  "pk": 10,
+  "fields": {
+    "title": "Mobile Solutions",
+    "category": "Mobile Development",
+    "description": "Crafting accessible Android applications that solve real student and business problems.",
+    "image": "banner-mobile.jpg",
+    "image_file": "",
+    "accent": "var(--color-gilded-deep)",
+    "order": 4
+  }
+},
+{
+  "model": "portfolio_app.skill",
+  "pk": 11,
+  "fields": {
+    "title": "IT Infrastructure & Support",
+    "category": "TCRA & TRA Experience",
+    "description": "Hands-on IT technical support, hardware troubleshooting, and system administration.",
+    "image": "banner-server.jpg",
+    "image_file": "",
+    "accent": "var(--color-burgundy)",
+    "order": 5
+  }
+},
+{
+  "model": "portfolio_app.skill",
+  "pk": 12,
+  "fields": {
+    "title": "Database & Data Systems",
+    "category": "Database & Data",
+    "description": "Relational database design, SQL optimization, data integrity, and automated backups.",
+    "image": "banner-server.jpg",
+    "image_file": "",
+    "accent": "var(--color-royal)",
+    "order": 6
+  }
+},
+{
+  "model": "portfolio_app.project",
+  "pk": 2,
+  "fields": {
+    "title": "CoverPage",
+    "subtitle": "Digital Cover Page Generator",
+    "description": "CoverPage is a modern digital platform designed to simplify and automate the process of creating academic cover pages for students across universities.",
+    "features": [
+      "Fast & automated cover page generation",
+      "Clean, professional academic formatting",
+      "User-friendly interface for students",
+      "Trusted across multiple universities"
+    ],
+    "image": "Create Coverpage Online Free � Coverpage Maker - Google Chrome 25_06_2026 12_16_05.png",
+    "image_file": "",
+    "link": "https://coverpage.co.tz"
+  }
+},
+{
+  "model": "portfolio_app.contactmessage",
+  "pk": 1,
+  "fields": {
+    "name": "Test User",
+    "email": "test@example.com",
+    "message": "Hello Jarvis!",
+    "created_at": "2026-08-25T08:28:23.805Z"
+  }
+},
+{
+  "model": "portfolio_app.contactmessage",
+  "pk": 2,
+  "fields": {
+    "name": "jarvis",
+    "email": "Jarvis@gmail.com",
+    "message": "hiiii",
+    "created_at": "2026-08-26T16:42:15.471Z"
+  }
+},
+{
+  "model": "portfolio_app.contactmessage",
+  "pk": 3,
+  "fields": {
+    "name": "Test",
+    "email": "test@example.com",
+    "message": "Hello",
+    "created_at": "2026-08-28T08:57:02.318Z"
+  }
+},
+{
+  "model": "portfolio_app.contactmessage",
+  "pk": 4,
+  "fields": {
+    "name": "Test",
+    "email": "test@example.com",
+    "message": "Hello",
+    "created_at": "2026-08-28T08:57:13.619Z"
+  }
+}
+]
