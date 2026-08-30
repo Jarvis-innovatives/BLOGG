@@ -63,12 +63,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'portfolio_project.wsgi.application'
 
-if os.environ.get('DATABASE_URL'):
-    import dj_database_url
+database_url = os.environ.get('DATABASE_URL', '').strip()
 
-    DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600, conn_health_checks=True),
-    }
+if database_url:
+    try:
+        import dj_database_url
+
+        DATABASES = {
+            'default': dj_database_url.parse(
+                database_url,
+                conn_max_age=600,
+                conn_health_checks=True,
+            ),
+        }
+    except Exception:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
+        }
 else:
     DATABASES = {
         'default': {
