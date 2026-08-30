@@ -18,7 +18,7 @@ ALLOWED_HOSTS = os.environ.get(
 ).split(',')
 ALLOWED_HOSTS = [host for host in ALLOWED_HOSTS if host]
 CSRF_TRUSTED_ORIGINS = os.environ.get(
-    'CSRF_TRUSTED_ORIGINS', 'https://*.onrender.com'
+    'CSRF_TRUSTED_ORIGINS', 'jarvislameck.online'
 ).split(',')
 WHITENOISE_MANIFEST_STRICT = False
 
