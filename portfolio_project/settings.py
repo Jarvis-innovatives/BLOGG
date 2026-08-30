@@ -9,17 +9,33 @@ SECRET_KEY = os.environ.get(
 
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
-# Render provides the public hostname for the running web service.  Keeping
-# localhost here makes local development work without weakening production
-# host validation with a wildcard.
-ALLOWED_HOSTS = os.environ.get(
-    'ALLOWED_HOSTS',
-    f"{os.environ.get('RENDER_EXTERNAL_HOSTNAME', '')},localhost,127.0.0.1",
-).split(',')
-ALLOWED_HOSTS = [host for host in ALLOWED_HOSTS if host]
-CSRF_TRUSTED_ORIGINS = os.environ.get(
-    'CSRF_TRUSTED_ORIGINS', 'jarvislameck.online'
-).split(',')
+def comma_separated_env(name):
+    """Return non-empty, comma-separated environment values."""
+    return [value.strip() for value in os.environ.get(name, '').split(',') if value.strip()]
+
+
+# Keep Render and local hosts allowed even when the dashboard adds a custom
+# domain through ALLOWED_HOSTS.
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'jarvislameck.online',
+    'www.jarvislameck.online',
+]
+render_hostname = os.environ.get('RENDER_EXTERNAL_HOSTNAME', '').strip()
+if render_hostname:
+    ALLOWED_HOSTS.append(render_hostname)
+for host in comma_separated_env('ALLOWED_HOSTS'):
+    ALLOWED_HOSTS.append(host.replace('https://', '').replace('http://', '').rstrip('/'))
+ALLOWED_HOSTS = list(dict.fromkeys(ALLOWED_HOSTS))
+
+# Django requires a scheme here. Accept a full origin or a bare domain typed
+# in Render, such as jarvislameck.online.
+CSRF_TRUSTED_ORIGINS = []
+for origin in comma_separated_env('CSRF_TRUSTED_ORIGINS') or ['https://jarvislameck.online']:
+    CSRF_TRUSTED_ORIGINS.append(
+        origin if origin.startswith(('http://', 'https://')) else f'https://{origin}'
+    )
 WHITENOISE_MANIFEST_STRICT = False
 
 INSTALLED_APPS = [
