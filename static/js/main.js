@@ -1,11 +1,110 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Mobile Nav Toggle if present
+  // Mobile Off-Canvas Drawer Navigation
   const mobileToggle = document.getElementById('mobile-menu-toggle');
-  const mobileNav = document.getElementById('mobile-nav');
-  if (mobileToggle && mobileNav) {
-    mobileToggle.addEventListener('click', function () {
-      mobileNav.classList.toggle('hidden');
+  const mobileDrawer = document.getElementById('mobile-drawer');
+  const mobileOverlay = document.getElementById('mobile-drawer-overlay');
+  const mobileClose = document.getElementById('mobile-drawer-close');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+  function openMobileDrawer() {
+    if (mobileDrawer) mobileDrawer.classList.add('active');
+    if (mobileOverlay) mobileOverlay.classList.add('active');
+    if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileDrawer() {
+    if (mobileDrawer) mobileDrawer.classList.remove('active');
+    if (mobileOverlay) mobileOverlay.classList.remove('active');
+    if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  if (mobileToggle) mobileToggle.addEventListener('click', openMobileDrawer);
+  if (mobileClose) mobileClose.addEventListener('click', closeMobileDrawer);
+  if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobileDrawer);
+
+  mobileLinks.forEach((link) => {
+    link.addEventListener('click', function () {
+      closeMobileDrawer();
     });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && mobileDrawer && mobileDrawer.classList.contains('active')) {
+      closeMobileDrawer();
+    }
+  });
+
+  // Auto-close mobile menu on window resize to desktop
+  window.addEventListener('resize', function () {
+    if (window.innerWidth >= 768 && mobileDrawer && mobileDrawer.classList.contains('active')) {
+      closeMobileDrawer();
+    }
+  });
+
+  // Header Scroll State & Scroll-to-Top Button (Mobile Only)
+  const mainHeader = document.getElementById('main-header');
+  const scrollToTopBtn = document.getElementById('scroll-to-top');
+
+  window.addEventListener('scroll', function () {
+    const currentScroll = window.scrollY;
+
+    if (mainHeader) {
+      if (currentScroll > 20) {
+        mainHeader.classList.add('scrolled');
+      } else {
+        mainHeader.classList.remove('scrolled');
+      }
+    }
+
+    if (scrollToTopBtn) {
+      if (currentScroll > 300 && window.innerWidth < 768) {
+        scrollToTopBtn.classList.add('visible');
+      } else {
+        scrollToTopBtn.classList.remove('visible');
+      }
+    }
+  });
+
+  if (scrollToTopBtn) {
+    scrollToTopBtn.addEventListener('click', function () {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    });
+  }
+
+  // IntersectionObserver ScrollSpy for Desktop Section Highlight
+  const desktopNavLinks = document.querySelectorAll('#desktop-nav .nav-link');
+  const sections = document.querySelectorAll('section[id]');
+
+  if (sections.length > 0 && desktopNavLinks.length > 0) {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-25% 0px -55% 0px',
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const currentId = entry.target.getAttribute('id');
+          desktopNavLinks.forEach((link) => {
+            const href = link.getAttribute('href') || '';
+            const sectionTarget = link.getAttribute('data-section') || (href.includes('#') ? href.split('#')[1] : '');
+            if (sectionTarget === currentId) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => observer.observe(section));
   }
 
   // Blog Page Functionality (Filter, Search, Sort)

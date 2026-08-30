@@ -17,6 +17,7 @@ def comma_separated_env(name):
 # Keep Render and local hosts allowed even when the dashboard adds a custom
 # domain through ALLOWED_HOSTS.
 ALLOWED_HOSTS = [
+    '*',
     'localhost',
     '127.0.0.1',
     'jarvislameck.online',

@@ -6,10 +6,11 @@
 {% block content %}
 <article class="paper-grain py-10 md:py-16">
   <div class="mx-auto max-w-4xl px-6">
-    
+
     <!-- Top Action Bar -->
     <div class="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-[var(--color-gilded)]/30 pb-4">
-      <a href="{% url 'blog_list' %}" class="inline-flex items-center gap-2 font-serif text-lg font-semibold text-stone-700 hover:text-[var(--color-burgundy)] transition">
+      <a href="{% url 'blog_list' %}"
+        class="inline-flex items-center gap-2 font-serif text-lg font-semibold text-stone-700 hover:text-[var(--color-burgundy)] transition">
         &larr; Back to Journal List
       </a>
       <div class="flex items-center gap-3">
@@ -21,7 +22,7 @@
 
     <!-- Main Content Reader Box -->
     <div id="reader-box" class="reader-container">
-      
+
       <!-- Article Header -->
       <header class="mb-8">
         <div class="flex flex-wrap items-center gap-3 font-serif text-sm">
@@ -37,7 +38,8 @@
           {{ post.title }}
         </h1>
         <div class="ornate-divider my-5 max-w-md"><span>✦</span></div>
-        <p class="font-serif text-xl italic text-stone-800 leading-relaxed bg-[var(--color-parchment-deep)]/70 p-5 rounded-md border-l-4 border-[var(--color-burgundy)] shadow-sm">
+        <p
+          class="font-serif text-xl italic text-stone-800 leading-relaxed bg-[var(--color-parchment-deep)]/70 p-5 rounded-md border-l-4 border-[var(--color-burgundy)] shadow-sm">
           {{ post.summary }}
         </p>
       </header>
@@ -56,22 +58,23 @@
         <noscript>
           <div class="space-y-6">
             {% if post.content_json.topics %}
-              {% for topic in post.content_json.topics %}
-                <h2 class="font-display text-2xl font-bold text-[var(--color-burgundy)] mt-6">{{ topic.topic }}</h2>
-                {% for sub in topic.subtopics %}
-                  <div class="my-4">
-                    <h3 class="font-display text-xl font-bold text-[var(--color-ink)]">{{ sub.title }}</h3>
-                    <p class="font-serif text-lg leading-relaxed text-stone-800">{{ sub.explanation }}</p>
-                  </div>
-                {% endfor %}
-              {% endfor %}
+            {% for topic in post.content_json.topics %}
+            <h2 class="font-display text-2xl font-bold text-[var(--color-burgundy)] mt-6">{{ topic.topic }}</h2>
+            {% for sub in topic.subtopics %}
+            <div class="my-4">
+              <h3 class="font-display text-xl font-bold text-[var(--color-ink)]">{{ sub.title }}</h3>
+              <p class="font-serif text-lg leading-relaxed text-stone-800">{{ sub.explanation }}</p>
+            </div>
+            {% endfor %}
+            {% endfor %}
             {% endif %}
           </div>
         </noscript>
       </div>
 
       <!-- Reader Navigation Bar (Next / Prev Page Shifts) -->
-      <div id="reader-pagination-bar" class="mt-10 pt-6 border-t border-[var(--color-gilded)]/40 flex flex-wrap items-center justify-between gap-4">
+      <div id="reader-pagination-bar"
+        class="mt-10 pt-6 border-t border-[var(--color-gilded)]/40 flex flex-wrap items-center justify-between gap-4">
         <button id="prev-page-btn" class="page-nav-btn">
           &larr; Previous Page
         </button>
@@ -92,20 +95,25 @@
     <!-- Related Articles & Next Article Footer Navigation -->
     <div class="grid gap-6 md:grid-cols-2">
       {% if next_post %}
-      <a href="{% url 'blog_detail' next_post.slug %}" class="group block rounded-md border-2 border-[var(--color-burgundy)] bg-[var(--color-parchment-deep)] p-6 shadow-md hover:shadow-xl transition">
-        <p class="font-serif text-xs uppercase tracking-wider font-bold text-[var(--color-burgundy)]">Read Next Article &rarr;</p>
-        <p class="font-display mt-2 text-2xl font-bold text-[var(--color-ink)] group-hover:text-[var(--color-burgundy)] transition">
+      <a href="{% url 'blog_detail' next_post.slug %}"
+        class="group block rounded-md border-2 border-[var(--color-burgundy)] bg-[var(--color-parchment-deep)] p-6 shadow-md hover:shadow-xl transition">
+        <p class="font-serif text-xs uppercase tracking-wider font-bold text-[var(--color-burgundy)]">Read Next Article
+          &rarr;</p>
+        <p
+          class="font-display mt-2 text-2xl font-bold text-[var(--color-ink)] group-hover:text-[var(--color-burgundy)] transition">
           {{ next_post.title }}
         </p>
         <p class="font-serif text-sm text-stone-600 mt-1 line-clamp-2">{{ next_post.summary }}</p>
       </a>
       {% endif %}
 
-      <div class="rounded-md border border-[var(--color-gilded)]/40 bg-white/70 p-6 shadow-sm flex flex-col justify-between">
+      <div
+        class="rounded-md border border-[var(--color-gilded)]/40 bg-white/70 p-6 shadow-sm flex flex-col justify-between">
         <div>
           <p class="font-serif text-xs uppercase tracking-wider font-bold text-stone-600">Explore Journal</p>
           <p class="font-display mt-2 text-xl font-bold text-[var(--color-ink)]">Discover more tech articles</p>
-          <p class="font-serif text-sm text-stone-600 mt-1">Browse our full archive of tutorials, networking tips, and cybersecurity guides.</p>
+          <p class="font-serif text-sm text-stone-600 mt-1">Browse our full archive of tutorials, networking tips, and
+            cybersecurity guides.</p>
         </div>
         <div class="mt-4">
           <a href="{% url 'blog_list' %}" class="btn-secondary text-sm py-2 px-5">
